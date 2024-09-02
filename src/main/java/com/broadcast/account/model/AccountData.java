@@ -16,7 +16,7 @@ import java.util.Set;
 public class AccountData {
 
     @Id
-    private String id;
+    private Long id;
 
     private String firstName;
 
@@ -25,6 +25,8 @@ public class AccountData {
     private String dateOfBirth;
 
     private Short age;
+
+    private String photoId;
 
     @EqualsAndHashCode.Exclude
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH}, mappedBy = "accountData")
