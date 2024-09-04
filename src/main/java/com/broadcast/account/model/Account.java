@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -25,5 +27,9 @@ public class Account {
     @JoinColumn(name = "account_data_id")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private AccountData accountData;
+
+    private Boolean isOnline;
+
+    private LocalDateTime lastOnlineAt;
 
 }
