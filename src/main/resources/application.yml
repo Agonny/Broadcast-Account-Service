@@ -1,0 +1,45 @@
+server:
+  forward-headers-strategy: native
+  port: 8081
+spring:
+  application:
+    name: account-service
+  boot:
+    admin:
+      client:
+        enabled: false
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/accounts
+    username: accountUser
+    password: accountPassword
+  flyway:
+    schemas: public
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#  config:
+##    activate:
+##      on-profile: dev
+#    import: 'optional:configserver:'
+#    cloud:
+#      config:
+#        uri: http://localhost:8888
+
+
+#        uri: http://172.17.0.1:8888
+
+#server:
+#  forward-headers-strategy: native
+#  port: 8081
+#spring:
+#  application:
+#    name: selmag-catalogue-service
+#  config:
+#    import: 'optional:configserver:'
+#  cloud:
+#    config:
+#      uri: http://config:config-password@172.17.0.1:8888

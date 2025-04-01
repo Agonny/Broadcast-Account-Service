@@ -1,19 +1,19 @@
 package com.broadcast.account.model;
 
+import com.broadcast.account.enums.EducationPlaceType;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode
-@NamedEntityGraph(name = "EducationPlaceWithAccountData", attributeNodes =
-@NamedAttributeNode(value = "accountData", subgraph = "accountDataWithAccount"), subgraphs =
-@NamedSubgraph(name = "accountDataWithAccount", attributeNodes = @NamedAttributeNode(value = "account")))
+@Table(name = "education_places")
 public class EducationPlace {
 
     @Id
@@ -24,13 +24,11 @@ public class EducationPlace {
 
     private String address;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private EducationPlaceType type;
 
     @EqualsAndHashCode.Exclude
-    @JoinTable(name = "education_places_account_data",
-            joinColumns = @JoinColumn(name = "education_place_id"),
-            inverseJoinColumns = @JoinColumn(name = "account_data_id"))
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
-    private Set<AccountData> accountData;
+    private Set<EducationPeriod> periods = new LinkedHashSet<>();
 
 }

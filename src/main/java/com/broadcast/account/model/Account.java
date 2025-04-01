@@ -6,27 +6,38 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @EqualsAndHashCode
-@NamedEntityGraph(name = "accountWithAccountData", attributeNodes =
-@NamedAttributeNode(value = "accountData", subgraph = "accountDataWithEducationPlaces"), subgraphs =
-@NamedSubgraph(name = "accountDataWithEducationPlaces", attributeNodes = @NamedAttributeNode(value = "educationPlaces")))
+@Table(name = "accounts")
+@NamedEntityGraph(name = "accountWithEducationPeriods",
+        attributeNodes = @NamedAttributeNode(value = "educationPeriods", subgraph = "periodWithEducationPlace"),
+        subgraphs = @NamedSubgraph(name = "periodWithEducationPlace", attributeNodes = @NamedAttributeNode(value = "educationPlace")))
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String username;
-
     private String email;
 
-    @JoinColumn(name = "account_data_id")
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private AccountData accountData;
+    private String firstName;
+
+    private String secondName;
+
+    private String dateOfBirth;
+
+    private Short age;
+
+    private String photoId;
+
+    @EqualsAndHashCode.Exclude
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "account")
+    private Set<EducationPeriod> educationPeriods = new LinkedHashSet<>();
 
     private Boolean isOnline;
 
