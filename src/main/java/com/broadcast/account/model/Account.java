@@ -25,6 +25,8 @@ public class Account {
 
     private String email;
 
+    private String phoneNumber;
+
     private String firstName;
 
     private String secondName;

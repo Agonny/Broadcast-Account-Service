@@ -28,7 +28,7 @@ public class EducationPlace {
     private EducationPlaceType type;
 
     @EqualsAndHashCode.Exclude
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     private Set<EducationPeriod> periods = new LinkedHashSet<>();
 
 }

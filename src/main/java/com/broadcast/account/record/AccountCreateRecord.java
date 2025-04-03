@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public record AccountCreateRecord(
         String email,
+        String phoneNumber,
         String firstName,
         String secondName,
         String dateOfBirth,

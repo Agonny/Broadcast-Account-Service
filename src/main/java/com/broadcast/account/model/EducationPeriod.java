@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,9 +19,9 @@ public class EducationPeriod {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private LocalDateTime from;
+    private LocalDate dateFrom;
 
-    private LocalDateTime to;
+    private LocalDate dateTo;
 
     @JoinTable(name = "account_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
